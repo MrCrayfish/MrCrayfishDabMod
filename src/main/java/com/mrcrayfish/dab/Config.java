@@ -19,10 +19,11 @@ public class Config
 			config = new Configuration(file);
 		}
 		loadConfig();
+		config.save();
 	}
 	
 	public static void loadConfig()
 	{
-		showHint = config.getBoolean("show-hint", CATEGORY_GENERAL, true, "Show key to Dab on joining world.");
+		showHint = config.getBoolean("show-hint", CATEGORY_GENERAL, true, "Hint the key to Dab upon joining a world.");
 	}
 }
