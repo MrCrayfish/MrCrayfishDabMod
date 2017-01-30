@@ -3,6 +3,7 @@ package com.mrcrayfish.dab.proxy;
 import com.mrcrayfish.dab.Reference;
 import com.mrcrayfish.dab.client.model.entity.ModelPlayerOverride;
 import com.mrcrayfish.dab.event.InputEvent;
+import com.mrcrayfish.dab.init.ModKeys;
 
 import api.player.model.ModelPlayerAPI;
 import net.minecraftforge.common.MinecraftForge;
@@ -14,6 +15,10 @@ public class ClientProxy implements IProxy
 	public void init()
 	{
 		MinecraftForge.EVENT_BUS.register(new InputEvent());
+		
 		ModelPlayerAPI.register(Reference.MOD_ID, ModelPlayerOverride.class);
+		
+		ModKeys.init();
+		ModKeys.register();
 	}
 }

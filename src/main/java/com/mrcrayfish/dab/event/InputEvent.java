@@ -2,6 +2,7 @@ package com.mrcrayfish.dab.event;
 
 import org.lwjgl.input.Keyboard;
 
+import com.mrcrayfish.dab.init.ModKeys;
 import com.mrcrayfish.dab.network.PacketHandler;
 import com.mrcrayfish.dab.network.message.MessageDab;
 
@@ -16,7 +17,7 @@ public class InputEvent
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event)
 	{
-		if(GuiScreen.isAltKeyDown())
+		if(ModKeys.dab.isKeyDown())
 		{
 			if(!dabbing)
 			{
