@@ -11,7 +11,7 @@ public class ModKeys
 	
 	public static void init()
 	{
-		dab = new KeyBinding("key.dab", Keyboard.KEY_LMENU, "key.categories.Dab");
+		dab = new KeyBinding("key.dab", Keyboard.KEY_R, "key.categories.Dab");
 	}
 	
 	public static void register()

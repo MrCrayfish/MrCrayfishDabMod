@@ -21,6 +21,8 @@ public class MrCrayfishDabMod
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		Config.init(event.getSuggestedConfigurationFile());
+		
 		PacketHandler.init();
 	}
 	
