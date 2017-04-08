@@ -27,11 +27,13 @@ public class ModelPlayerOverride extends ModelPlayerBase
 			this.modelPlayer.bipedRightArmwear.rotateAngleX = (float) Math.toRadians(-90F);
 			this.modelPlayer.bipedRightArmwear.rotateAngleY = (float) Math.toRadians(-35F);
 			
-			this.modelPlayer.bipedLeftArm.rotateAngleX = (float) Math.toRadians(110F);
-			this.modelPlayer.bipedLeftArm.rotateAngleY = (float) Math.toRadians(75F);
+			this.modelPlayer.bipedLeftArm.rotateAngleX = (float) Math.toRadians(15F);
+			this.modelPlayer.bipedLeftArm.rotateAngleY = (float) Math.toRadians(15F);
+			this.modelPlayer.bipedLeftArm.rotateAngleZ = (float) Math.toRadians(-110F);
 			
-			this.modelPlayer.bipedLeftArmwear.rotateAngleX = (float) Math.toRadians(110F);
-			this.modelPlayer.bipedLeftArmwear.rotateAngleY = (float) Math.toRadians(75F);
+			this.modelPlayer.bipedLeftArmwear.rotateAngleX = (float) Math.toRadians(15F);
+			this.modelPlayer.bipedLeftArmwear.rotateAngleY = (float) Math.toRadians(15F);
+			this.modelPlayer.bipedLeftArmwear.rotateAngleZ = (float) Math.toRadians(-110F);
 			
 			this.modelPlayer.bipedHead.rotateAngleX = (float) Math.toRadians(45F);
 			this.modelPlayer.bipedHead.rotateAngleY = (float) Math.toRadians(35F);
