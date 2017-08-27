@@ -83,7 +83,6 @@ public class InputEvent
 	@SubscribeEvent
 	public void onConnect(FMLNetworkEvent.ClientConnectedToServerEvent event)
 	{
-		System.out.println(event.getConnectionType());
 		this.connectionType = event.getConnectionType();
 	}
 }
