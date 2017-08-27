@@ -1,5 +1,6 @@
 package com.mrcrayfish.dab.event;
 
+import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import org.lwjgl.input.Keyboard;
 
 import com.mrcrayfish.dab.init.ModKeys;
@@ -24,6 +25,9 @@ public class InputEvent
 	public static int prevDabbingHeld = 0;
 	
 	public static float firstPersonPartialTicks;
+
+	public String connectionType;
+
 	
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event)
@@ -32,13 +36,15 @@ public class InputEvent
 		{
 			if(!dabbing)
 			{
-				PacketHandler.INSTANCE.sendToServer(new MessageDab(true));
+				if("MODDED".equals(connectionType))
+					PacketHandler.INSTANCE.sendToServer(new MessageDab(true));
 				dabbing = true;
 			}
 		}
 		else
 		{
-			PacketHandler.INSTANCE.sendToServer(new MessageDab(false));
+			if("MODDED".equals(connectionType))
+				PacketHandler.INSTANCE.sendToServer(new MessageDab(false));
 			dabbing = false;
 		}
 	}
@@ -63,7 +69,7 @@ public class InputEvent
 	{
 		if(!printed)
 		{
-			event.player.addChatMessage(new TextComponentString(TextFormatting.GOLD.toString() + TextFormatting.BOLD.toString() + "Press " + Keyboard.getKeyName(ModKeys.dab.getKeyCode()) + " to Dab!"));
+			event.player.sendMessage(new TextComponentString(TextFormatting.GOLD.toString() + TextFormatting.BOLD.toString() + "Press " + Keyboard.getKeyName(ModKeys.dab.getKeyCode()) + " to Dab!"));
 			printed = true;
 		}
 	}
@@ -72,5 +78,12 @@ public class InputEvent
 	public void onRender(RenderHandEvent event) 
 	{
 		firstPersonPartialTicks = event.getPartialTicks();
+	}
+
+	@SubscribeEvent
+	public void onConnect(FMLNetworkEvent.ClientConnectedToServerEvent event)
+	{
+		System.out.println(event.getConnectionType());
+		this.connectionType = event.getConnectionType();
 	}
 }

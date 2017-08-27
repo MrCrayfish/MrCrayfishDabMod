@@ -7,6 +7,7 @@ import api.player.model.ModelPlayerBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 
 public class ModelPlayerOverride extends ModelPlayerBase
 {
@@ -26,7 +27,7 @@ public class ModelPlayerOverride extends ModelPlayerBase
 	@Override
 	public void afterSetRotationAngles(float paramFloat1, float paramFloat2, float paramFloat3, float paramFloat4, float paramFloat5, float paramFloat6, net.minecraft.entity.Entity paramEntity)
 	{
-		boolean isOurPlayer = paramEntity.getEntityId() == Minecraft.getMinecraft().thePlayer.getEntityId();
+		boolean isOurPlayer = paramEntity.getEntityId() == Minecraft.getMinecraft().player.getEntityId();
 		
 		if(paramEntity.getEntityData().getBoolean("dabbing") || (isOurPlayer && InputEvent.prevDabbingHeld > 0))
 		{
@@ -47,10 +48,13 @@ public class ModelPlayerOverride extends ModelPlayerBase
 			this.modelPlayer.bipedLeftArmwear.rotateAngleX = (float) Math.toRadians(15F * heldPercent);
 			this.modelPlayer.bipedLeftArmwear.rotateAngleY = (float) Math.toRadians(15F * heldPercent);
 			this.modelPlayer.bipedLeftArmwear.rotateAngleZ = (float) Math.toRadians(-110F * heldPercent);
-			
-			this.modelPlayer.bipedHead.rotateAngleX = (float) Math.toRadians(45F * heldPercent);
-			this.modelPlayer.bipedHead.rotateAngleY = (float) Math.toRadians(35F * heldPercent);
-			
+
+			float rotationX = paramEntity.rotationPitch;
+			this.modelPlayer.bipedHead.rotateAngleX = (float) Math.toRadians(-rotationX * heldPercent) + (float) Math.toRadians(45F * heldPercent + rotationX);
+
+			float rotationY = (((EntityPlayer) paramEntity).renderYawOffset - paramEntity.rotationYaw);
+			this.modelPlayer.bipedHead.rotateAngleY = (float) Math.toRadians(rotationY * heldPercent) + (float) Math.toRadians(35F * heldPercent - rotationY);
+
 			this.modelPlayer.bipedHeadwear.rotateAngleX = (float) Math.toRadians(45F * heldPercent);
 			this.modelPlayer.bipedHeadwear.rotateAngleY = (float) Math.toRadians(35F * heldPercent);
 			
