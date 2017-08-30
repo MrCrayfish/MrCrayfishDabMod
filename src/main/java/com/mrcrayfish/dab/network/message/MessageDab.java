@@ -1,9 +1,7 @@
 package com.mrcrayfish.dab.network.message;
 
 import com.mrcrayfish.dab.network.PacketHandler;
-
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -38,7 +36,7 @@ public class MessageDab implements IMessage, IMessageHandler<MessageDab, IMessag
 	@Override
 	public IMessage onMessage(MessageDab message, MessageContext ctx) 
 	{
-		EntityPlayer player = ctx.getServerHandler().playerEntity;
+		EntityPlayer player = ctx.getServerHandler().player;
 		player.getEntityData().setBoolean("dabbing", message.dabbing);
 		PacketHandler.INSTANCE.sendToAllAround(new MessageUpdate(player.getEntityId(), message.dabbing), new TargetPoint(player.dimension, player.posX, player.posY, player.posZ, 64));
 		return null;

@@ -40,7 +40,7 @@ public class MessageUpdate implements IMessage, IMessageHandler<MessageUpdate, I
 	@Override
 	public IMessage onMessage(MessageUpdate message, MessageContext ctx) 
 	{
-		Entity entity = Minecraft.getMinecraft().theWorld.getEntityByID(message.playerId);
+		Entity entity = Minecraft.getMinecraft().world.getEntityByID(message.playerId);
 		if(entity instanceof EntityPlayer)
 		{
 			entity.getEntityData().setBoolean("dabbing", message.dabbing);
