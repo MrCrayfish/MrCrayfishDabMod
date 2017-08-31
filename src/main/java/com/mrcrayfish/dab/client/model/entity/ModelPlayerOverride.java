@@ -62,9 +62,8 @@ public class ModelPlayerOverride extends ModelPlayer
 			float rotationY = (((EntityPlayer) entityIn).renderYawOffset - entityIn.rotationYaw);
 			this.bipedHead.rotateAngleY = (float) Math.toRadians(rotationY * heldPercent) + (float) Math.toRadians(35F * heldPercent - rotationY);
 
-			this.bipedHeadwear.rotateAngleX = (float) Math.toRadians(45F * heldPercent);
-			this.bipedHeadwear.rotateAngleY = (float) Math.toRadians(35F * heldPercent);
-			
+			copyModelAngles(this.bipedHead, this.bipedHeadwear);
+
 			if(isOurPlayer)
 			{
 				if(Minecraft.getMinecraft().gameSettings.thirdPersonView == 0)
